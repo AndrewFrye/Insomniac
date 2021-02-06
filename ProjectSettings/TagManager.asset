@@ -1,0 +1,62 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 2
+  tags:
+  - Enemy
+  - instantKill
+  - ResetJump
+  - Projectile
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - 
+  - Water
+  - UI
+  - 
+  - 
+  - Background
+  - Obstacle
+  - Foreground
+  - Particles
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  m_SortingLayers:
+  - name: Invis Wall
+    uniqueID: 4219430441
+    locked: 0
+  - name: Background
+    uniqueID: 2470331459
+    locked: 0
+  - name: Oppostacles
+    uniqueID: 4283141149
+    locked: 0
+  - name: Default
+    uniqueID: 0
+    locked: 0
+  - name: Particles
+    uniqueID: 960498995
+    locked: 0
+  - name: Foreground
+    uniqueID: 224406549
+    locked: 0
