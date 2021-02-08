@@ -10,14 +10,14 @@ public class HealthBarGenerator : MonoBehaviour
     public SpriteRenderer Heart;
     public Sprite emptyHeart;
     public Sprite fullHeart;
+    public HealthManagement hpsys;
 
     private void Start()
     {
+        GameObject x = GameObject.FindGameObjectWithTag("HealthManager");
+        hpsys = x.GetComponent<HealthManagement>();
         Heart.sprite = fullHeart;
-    }
-    private void Awake()
-    {
-        playerMaxHealth = HealthManagement.hp;
+        playerMaxHealth = hpsys.hp;
     }
 
     private void Update()
@@ -25,7 +25,7 @@ public class HealthBarGenerator : MonoBehaviour
         if(!CameraMovement.zoom)
         {
             Heart.enabled = true;
-            if (HealthManagement.hp < heartNum)
+            if (hpsys.hp < heartNum)
             {
                 Heart.sprite = emptyHeart;
                 if(heartNum == 0) SceneManager.LoadScene(SceneManager.GetActiveScene().name, LoadSceneMode.Single);

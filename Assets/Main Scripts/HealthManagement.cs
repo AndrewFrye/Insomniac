@@ -5,11 +5,11 @@ using UnityEngine.SceneManagement;
 
 public class HealthManagement : MonoBehaviour
 {
-    public static int iFrames;
-    public static int hp;
-    public static bool dead;
+    public int iFrames;
+    public int hp;
+    public bool dead;
 
-    private void Awake()
+    private void Start()
     {
         hp = 3;
         iFrames = 0;
@@ -25,8 +25,10 @@ public class HealthManagement : MonoBehaviour
             hp--;
             iFrames = 30;
             Debug.Log("Player has been hit");
-            if (hp <= 0) SceneManager.LoadScene(SceneManager.GetActiveScene().name, LoadSceneMode.Single);
+            
+            
         }
-        
+        if (hp < 1) dead = true;
+        if (dead) SceneManager.LoadScene(SceneManager.GetActiveScene().name, LoadSceneMode.Single);
     }
 }

@@ -8,6 +8,7 @@ TagManager:
   - instantKill
   - ResetJump
   - Projectile
+  - HealthManager
   layers:
   - Default
   - TransparentFX

@@ -8,6 +8,7 @@ public class PlayerCollision : MonoBehaviour
     public static bool dead;
     public static Transform player;
     public static Collider2D playerCollider;
+    public HealthManagement hpsys;
 
     private void Awake()
     {
@@ -15,6 +16,11 @@ public class PlayerCollision : MonoBehaviour
         player = GetComponent<Transform>();
         iFrames = 0;
         dead = false;
+    }
+    private void Start()
+    {
+        GameObject x = GameObject.FindGameObjectWithTag("HealthManager");
+        hpsys = x.GetComponent<HealthManagement>();
     }
 
     List<GameObject> currentCollisions = new List<GameObject>();
@@ -32,7 +38,7 @@ public class PlayerCollision : MonoBehaviour
             }
             if (gObject.tag.Equals("instantKill"))
             {
-                HealthManagement.dead = true;
+                hpsys.dead = true;
                 Debug.Log("Dead");
             }
             if (collision.gameObject.CompareTag("ResetJump")) BasicMovement.groundTest = true;
@@ -60,10 +66,10 @@ public class PlayerCollision : MonoBehaviour
         if (iFrames > 0) iFrames--;
     }
 
-    public static void playerDamage()
+    public void playerDamage()
     {
-        HealthManagement.hp--;
-        if (HealthManagement.hp == 0) dead = true;
+        hpsys.hp--;
+        if (hpsys.hp == 0) dead = true;
         iFrames = 30;
     }
 
