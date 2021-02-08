@@ -8,6 +8,7 @@ public class CaveBossProjectile : MonoBehaviour
     public float speed = 20f;
     public Rigidbody2D rb;
     public bool test;
+    public HealthManagement hpsys;
 
 
     void Start()
@@ -26,8 +27,7 @@ public class CaveBossProjectile : MonoBehaviour
         {
             if (gObject.CompareTag("Player"))
             {
-                PlayerCollision.playerDamage();
-
+                hpsys.hp--;
             }
         }
         Object.Destroy(rb.gameObject);
