@@ -4,7 +4,26 @@ using UnityEngine;
 
 public class AttackPhases : MonoBehaviour
 {
-    
+    public GameObject projectile;
+    bool temp = false;
+    private void Start()
+    {
+        
+    }
+
+    private void Update()
+    {
+        if(!temp)
+        {
+            Pattern pattern = new Pattern("Circle", 8, 0f, 10f);
+            pattern.genPos();
+            for (int i = 0; i < 8; i++)
+            {
+                Instantiate(projectile, new Vector3(pattern.positions[i].x, pattern.positions[i].y, 0), Quaternion.Euler(0, 0, 0));
+            }
+            temp = true;
+        }
+    }
 }
 
 public class Pattern
@@ -13,7 +32,7 @@ public class Pattern
     private string shape;
     private int projectileCount;
     private float radius;
-    private Vector2[] positions;
+    public Vector2[] positions;
 
     public Pattern(string Shape, int Count, float Center, float Radius)
     {
@@ -23,13 +42,13 @@ public class Pattern
         radius = Radius;
     }
 
-    void genPos()
+    public void genPos()
     {
-        string equation;
         switch (shape)
         {
             case "Circle":
-                equation = "x*x + y*y = " + (radius*radius);
+                circle Circle = new circle(radius, projectileCount);
+                positions = Circle.calcPointPos();
                 break;
         }
     }
@@ -38,22 +57,20 @@ public class Pattern
 class circle
 {
     private float radius;
-    private string equation;
     private int count;
     private float angleDifference;
 
-    public circle(float Radius, string Equation, int Count)
+    public circle(float Radius, int Count)
     {
         radius = Radius;
-        equation = Equation;
         count = Count;
     }
 
-    Vector2[] calcPointPos()
+    public Vector2[] calcPointPos()
     {
         float angle = 0;
         angleDifference = 360 / count;
-        Vector2[] pos = new Vector2[count - 1];
+        Vector2[] pos = new Vector2[count];
         float angleX;
         float sideX;
         float sideY;
@@ -68,6 +85,7 @@ class circle
                 if (angle > 90) angle -= 90;
                 angleX = 180 - 90 - angle;
                 sideY = angle * (Mathf.Sin((Mathf.PI / 180) * 90));
+                Debug.Log(sideY);
                 sideX = angleX * (Mathf.Sin((Mathf.PI / 180) * 90));
 
                 pos[i - 1] = new Vector2(sideX, sideY);
