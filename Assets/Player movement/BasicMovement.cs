@@ -47,7 +47,7 @@ public class BasicMovement : MonoBehaviour
             controls.Player.Fire.performed += ctx => shoot();
             controls.Player.DebugTeleport.performed += ctx => teleport();
             controls.Player.OpenMenuExitUI.performed += ctx => escapePressed();
-            controls.Player.Zoom.performed += ctx => CameraMovement.zoom = !CameraMovement.zoom;
+            controls.Player.Zoom.performed += ctx => zoom(); 
         }
     }
 
@@ -141,5 +141,10 @@ public class BasicMovement : MonoBehaviour
     private void escapePressed()
     {
         Application.Quit();
+    }
+
+    private void zoom()
+    {
+        if (SceneManager.GetActiveScene().buildIndex != 1) CameraMovement.zoom = !CameraMovement.zoom;
     }
 }

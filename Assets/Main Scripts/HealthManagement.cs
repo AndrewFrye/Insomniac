@@ -25,8 +25,6 @@ public class HealthManagement : MonoBehaviour
             hp--;
             iFrames = 30;
             Debug.Log("Player has been hit");
-            
-            
         }
         if (hp < 1) dead = true;
         if (dead) SceneManager.LoadScene(SceneManager.GetActiveScene().name, LoadSceneMode.Single);

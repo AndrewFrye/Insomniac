@@ -4,91 +4,75 @@ using UnityEngine;
 
 public class AttackPhases : MonoBehaviour
 {
-    public int phaseNum = 0;
-    public float timer = 30;
-    public GameObject Boss;
-    public GameObject projectile1;
-    public GameObject Player;
-    public Transform BossTransform;
-    public Transform PlayerTransform;
+    
+}
 
-    private void Awake()
+public class Pattern
+{
+    private float center;
+    private string shape;
+    private int projectileCount;
+    private float radius;
+    private Vector2[] positions;
+
+    public Pattern(string Shape, int Count, float Center, float Radius)
     {
-        BossTransform = Boss.GetComponent<Transform>();
-        PlayerTransform = Player.GetComponent<Transform>();
-    }
-    private void Update()
-    {
-        if (timer <= 0)
-        {
-            switch (phaseNum)
-            {
-                case 0:
-                    phase0();
-                    break;
-                default:
-                    break;
-            }
-            timer = 30;
-        }
-        else timer -= Time.deltaTime;
+        center = Center;
+        shape = Shape;
+        projectileCount = Count;
+        radius = Radius;
     }
 
-    private void phase0() //Ring of projectiles
+    void genPos()
     {
-        Vector3 position = BossTransform.position;
-        Quaternion rotation = Quaternion.Euler(0, 0, 180);
-        int projectileNum = 0;
-
-        for(int i = 0; i < 8; i++)
+        string equation;
+        switch (shape)
         {
-            switch(projectileNum)
-            {
-                case 0:
-                    position.y = 2;
-                    position.x = 7.35f;
-                    Instantiate(projectile1, position, rotation);
-                    break;
-                case 1:
-                    position.y = 1.121f;
-                    position.x = 9.471f;
-                    Instantiate(projectile1, position, rotation);
-                    break;
-                case 2:
-                    position.y = -1f;
-                    position.x = 10.35f;
-                    Instantiate(projectile1, position, rotation);
-                    break;
-                case 3:
-                    position.y = -3.121f;
-                    position.x = 9.471f;
-                    Instantiate(projectile1, position, rotation);
-                    break;
-                case 4:
-                    position.y = -4f;
-                    position.x = 7.35f;
-                    Instantiate(projectile1, position, rotation);
-                    break;
-                case 5:
-                    position.y = -3.121f;
-                    position.x = 5.229f;
-                    Instantiate(projectile1, position, rotation);
-                    break;
-                case 6:
-                    position.y = -1f;
-                    position.x = 4.35f;
-                    Instantiate(projectile1, position, rotation);
-                    break;
-                case 7:
-                    position.y = 1.121f;
-                    position.x = 5.229f;
-                    Instantiate(projectile1, position, rotation);
-                    break;
-
-            }
-            Debug.Log(projectileNum);
-            projectileNum++;
-            rotation = Quaternion.Euler(0, 0, rotation.eulerAngles.z - 45);
+            case "Circle":
+                equation = "x*x + y*y = " + (radius*radius);
+                break;
         }
+    }
+}
+
+class circle
+{
+    private float radius;
+    private string equation;
+    private int count;
+    private float angleDifference;
+
+    public circle(float Radius, string Equation, int Count)
+    {
+        radius = Radius;
+        equation = Equation;
+        count = Count;
+    }
+
+    Vector2[] calcPointPos()
+    {
+        float angle = 0;
+        angleDifference = 360 / count;
+        Vector2[] pos = new Vector2[count - 1];
+        float angleX;
+        float sideX;
+        float sideY;
+
+        for(int i = 1; i <= count; i++)
+        {
+            if (i == 1) pos[i - 1] = new Vector2(0, radius);
+            else
+            {
+                angle += angleDifference;
+                angleX = 180 - 90 - angle;
+                sideY = angle * (Mathf.Sin((Mathf.PI / 180) * 90));
+                sideX = angleX * (Mathf.Sin((Mathf.PI / 180) * 90));
+
+                pos[i - 1] = new Vector2(sideX, sideY);
+            }
+            
+        }
+
+        return pos;
     }
 }
