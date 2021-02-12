@@ -57,6 +57,7 @@ class circle
         float angleX;
         float sideX;
         float sideY;
+        int quadrant;
 
         for(int i = 1; i <= count; i++)
         {
@@ -64,6 +65,7 @@ class circle
             else
             {
                 angle += angleDifference;
+                if (angle > 90) angle -= 90;
                 angleX = 180 - 90 - angle;
                 sideY = angle * (Mathf.Sin((Mathf.PI / 180) * 90));
                 sideX = angleX * (Mathf.Sin((Mathf.PI / 180) * 90));
