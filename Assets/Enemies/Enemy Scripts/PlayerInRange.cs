@@ -8,6 +8,7 @@ public class PlayerInRange : MonoBehaviour
     public Transform player;
     public GameObject[] playerGobject;
     public Pathfinding.AIDestinationSetter target;
+    public float Range = 10;
     void Start()
     {
         playerGobject = GameObject.FindGameObjectsWithTag("Player");
@@ -35,7 +36,7 @@ public class PlayerInRange : MonoBehaviour
             {
                 if (hit.collider.CompareTag("Player"))
                 {
-                    if (hit.distance < 5) target.target = player;
+                    if (hit.distance < Range) target.target = player;
                 }
                 else
                 {

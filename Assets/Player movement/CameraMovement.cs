@@ -19,8 +19,16 @@ public class CameraMovement : MonoBehaviour
     {
         if (!zoom)
         {
-            //Debug.Log(Camera.gameObject.GetComponent<Camera>().orthographicSize);
-            if (Camera.gameObject.GetComponent<Camera>().orthographicSize != 5) Camera.gameObject.GetComponent<Camera>().orthographicSize = 5;
+            switch (SceneManager.GetActiveScene().buildIndex)
+            {
+                case 0:
+                    if (Camera.gameObject.GetComponent<Camera>().orthographicSize != 5) Camera.gameObject.GetComponent<Camera>().orthographicSize = 5;
+                    break;
+                case 1:
+                    if (Camera.gameObject.GetComponent<Camera>().orthographicSize != 10) Camera.gameObject.GetComponent<Camera>().orthographicSize = 10;
+                    break;
+            }
+            
             if (prePos != new Vector3(0, 0, 0))
             {
                 Camera.position = prePos;
@@ -40,8 +48,8 @@ public class CameraMovement : MonoBehaviour
             switch (SceneManager.GetActiveScene().buildIndex)
             {
                 case 0:
-                    Camera.position = new Vector3(24, 11, -10);
-                    Camera.gameObject.GetComponent<Camera>().orthographicSize = 17;
+                    Camera.position = new Vector3(-9.3f, 23, -10);
+                    Camera.gameObject.GetComponent<Camera>().orthographicSize = 28.8f;
                     break;
                 default:
                     break;

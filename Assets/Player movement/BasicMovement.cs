@@ -28,6 +28,8 @@ public class BasicMovement : MonoBehaviour
     //float fireTimer = 0;
     public bool debug;
     public bool ZeroG;
+    static float timer = 0;
+    static string currentTime;
 
     void Awake()
     {
@@ -47,7 +49,7 @@ public class BasicMovement : MonoBehaviour
             controls.Player.Fire.performed += ctx => shoot();
             controls.Player.DebugTeleport.performed += ctx => teleport();
             controls.Player.OpenMenuExitUI.performed += ctx => escapePressed();
-            controls.Player.Zoom.performed += ctx => CameraMovement.zoom = !CameraMovement.zoom;
+            controls.Player.Zoom.performed += ctx => zoom(); 
         }
     }
 
@@ -99,6 +101,11 @@ public class BasicMovement : MonoBehaviour
 
         if (rb2d.velocity.y > 0) RocketBootsParticles.Play();
         else RocketBootsParticles.Stop();
+
+        //Debug Timer
+        timer += Time.deltaTime;
+        currentTime = (int)timer / 60 + ":" + (int)timer % 60;
+        Debug.Log(currentTime);
     }
 
     public static GameObject currentInteractable;
@@ -141,5 +148,20 @@ public class BasicMovement : MonoBehaviour
     private void escapePressed()
     {
         Application.Quit();
+    }
+
+    private void zoom()
+    {
+        CameraMovement.zoom = !CameraMovement.zoom;
+
+        //Lock player
+        if (CameraMovement.zoom)
+        {
+            rb2d.gameObject.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeAll;
+        }
+        else
+        {
+            rb2d.gameObject.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeRotation;
+        }
     }
 }
