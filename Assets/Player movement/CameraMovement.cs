@@ -48,8 +48,8 @@ public class CameraMovement : MonoBehaviour
             switch (SceneManager.GetActiveScene().buildIndex)
             {
                 case 0:
-                    Camera.position = new Vector3(24, 11, -10);
-                    Camera.gameObject.GetComponent<Camera>().orthographicSize = 17;
+                    Camera.position = new Vector3(-9.3f, 23, -10);
+                    Camera.gameObject.GetComponent<Camera>().orthographicSize = 28.8f;
                     break;
                 default:
                     break;

@@ -145,6 +145,16 @@ public class BasicMovement : MonoBehaviour
 
     private void zoom()
     {
-        if (SceneManager.GetActiveScene().buildIndex != 1) CameraMovement.zoom = !CameraMovement.zoom;
+        CameraMovement.zoom = !CameraMovement.zoom;
+
+        //Lock player
+        if (CameraMovement.zoom)
+        {
+            rb2d.gameObject.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeAll;
+        }
+        else
+        {
+            rb2d.gameObject.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeRotation;
+        }
     }
 }
