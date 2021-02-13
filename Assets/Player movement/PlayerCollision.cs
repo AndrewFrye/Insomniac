@@ -76,6 +76,9 @@ public class PlayerCollision : MonoBehaviour
     public static void enemyBoop(GameObject e)
     {
         e.GetComponent<EnemyHP>().HP--;
-        if (e.GetComponent<EnemyHP>().HP <= 0) Object.Destroy(e);
+        if (e.GetComponent<EnemyHP>().HP <= 0)
+        {
+            Object.Destroy(e);
+        }
     }
 }

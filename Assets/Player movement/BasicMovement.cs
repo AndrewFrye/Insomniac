@@ -28,6 +28,8 @@ public class BasicMovement : MonoBehaviour
     //float fireTimer = 0;
     public bool debug;
     public bool ZeroG;
+    static float timer = 0;
+    static string currentTime;
 
     void Awake()
     {
@@ -99,6 +101,11 @@ public class BasicMovement : MonoBehaviour
 
         if (rb2d.velocity.y > 0) RocketBootsParticles.Play();
         else RocketBootsParticles.Stop();
+
+        //Debug Timer
+        timer += Time.deltaTime;
+        currentTime = (int)timer / 60 + ":" + (int)timer % 60;
+        Debug.Log(currentTime);
     }
 
     public static GameObject currentInteractable;
