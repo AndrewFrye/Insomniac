@@ -1,5 +1,7 @@
 # Insomniac-Game
 
+Get to the portal to find the boogie man by platfoming and defeating monsters
+
 # Controls
 
 
