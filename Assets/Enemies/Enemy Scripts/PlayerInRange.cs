@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerInRange : MonoBehaviour
 {
+    public string targetTag;
     public Transform self;
     public Transform player;
     public GameObject[] playerGobject;
@@ -11,7 +12,7 @@ public class PlayerInRange : MonoBehaviour
     public float Range = 10;
     void Start()
     {
-        playerGobject = GameObject.FindGameObjectsWithTag("Player");
+        playerGobject = GameObject.FindGameObjectsWithTag(targetTag);
         player = playerGobject[0].transform;
         target = GetComponent<Pathfinding.AIDestinationSetter>();
         self = GetComponent<Transform>();

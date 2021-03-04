@@ -1,0 +1,13 @@
+{
+  "Type": "CaveBat",
+  "AITarget": "Player",
+  "Name": "JSON Cave Bat",
+  "Pos": {
+    "x": 0,
+    "y": 0,
+    "z": 0
+  },
+  "AIRange": 5,
+  "MaxHealth": 3,
+  "RegenRate": 0
+}
