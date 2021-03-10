@@ -15,4 +15,7 @@ MonoBehaviour:
   m_Labels:
   - m_Name: Enemies
     m_Hash: -1212189790
-    m_CategoryList: []
+    m_CategoryList:
+    - m_Name: CaveBatStill
+      m_Hash: -943756014
+      m_Sprite: {fileID: 21300000, guid: e153dea353b6d784c83d09bd19ec1b23, type: 3}

@@ -6,10 +6,13 @@ using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 using UnityEditor;
+using UnityEngine.Experimental.U2D.Animation;
+using UnityEngine.U2D;
 
 public class JSON_Importer : MonoBehaviour
 {
     GameObject empty;
+    public GameObject master;
     void Start()
     {
         string path = Application.dataPath + "/JSON/Enemies";
@@ -34,11 +37,10 @@ public class JSON_Importer : MonoBehaviour
                         break;
                     case "spriterenderer":
                         empty.AddComponent<SpriteRenderer>();
-                        var bytes = System.IO.File.ReadAllBytes(Application.dataPath + x.Sprite);
-                        var tex = new Texture2D(1, 1);
-                        tex.LoadImage(bytes);
-                        Sprite img = Sprite.Create(tex, new Rect(0, 0, tex.width, tex.height), new Vector2(0.5f, 0.5f), 32f);
-                        empty.GetComponent<SpriteRenderer>().sprite = img;
+                        empty.AddComponent<SpriteLibrary>();
+                        empty.AddComponent<SpriteResolver>();
+                        empty.GetComponent<SpriteLibrary>().spriteLibraryAsset = master.GetComponent<SpriteLibrary>().spriteLibraryAsset;
+                        empty.GetComponent<SpriteResolver>().SetCategoryAndLabel(x.SpriteCategory, x.SpriteLabel);
                         break;
                     case "aipath":
                         empty.AddComponent<Pathfinding.AIPath>();
@@ -72,7 +74,8 @@ class Enemy {
     public int MaxHealth;
     public float RegenRate;
     public string[] Components;
-    public string Sprite;
+    public string SpriteLabel;
+    public string SpriteCategory;
     public float Gravity;
     public float ColliderRadius;
 }

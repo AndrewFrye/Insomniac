@@ -15,7 +15,8 @@
     "enemyhp",
     "aipath"
   ],
-  "Sprite": "/Resources/Sprites/Enemies/CaveBat/Still.png",
+  "SpriteLabel": "CaveBatStill",
+  "SpriteCategory": "Enemies",
   "Gravity": 0,
   "ColliderRadius": 1
 }
