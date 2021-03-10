@@ -74,7 +74,7 @@ class circle
         float angleX;
         float sideX;
         float sideY;
-        int quadrant;
+        //int quadrant;
 
         for(int i = 1; i <= count; i++)
         {
