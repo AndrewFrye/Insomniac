@@ -23,7 +23,7 @@ public class JSON_Importer : MonoBehaviour
 
         foreach (Enemy x in Enemies)
         {
-            empty = new GameObject(x.Name);
+            GameObject empty = new GameObject(x.Name);
 
             foreach (string y in x.Components)
             {
@@ -34,7 +34,10 @@ public class JSON_Importer : MonoBehaviour
                         break;
                     case "spriterenderer":
                         empty.AddComponent<SpriteRenderer>();
-                        Sprite img = Resources.Load(Application.dataPath + "/assets/sprites/" + x.Sprite) as Sprite;
+                        var bytes = System.IO.File.ReadAllBytes(Application.dataPath + x.Sprite);
+                        var tex = new Texture2D(1, 1);
+                        tex.LoadImage(bytes);
+                        Sprite img = Sprite.Create(tex, new Rect(0, 0, tex.width, tex.height), new Vector2(0.5f, 0.5f), 32f);
                         empty.GetComponent<SpriteRenderer>().sprite = img;
                         break;
                     case "aipath":
@@ -42,11 +45,13 @@ public class JSON_Importer : MonoBehaviour
                         empty.AddComponent<PlayerInRange>();
                         empty.AddComponent<CircleCollider2D>();
                         empty.AddComponent<Rigidbody2D>();
+                        empty.GetComponent<Rigidbody2D>().gravityScale = 0;
                         empty.AddComponent<Pathfinding.AIDestinationSetter>();
                         empty.GetComponent<CircleCollider2D>().radius = x.ColliderRadius;
                         empty.GetComponent<PlayerInRange>().targetTag = x.AITarget;
                         empty.GetComponent<PlayerInRange>().target = empty.GetComponent<Pathfinding.AIDestinationSetter>();
                         empty.GetComponent<PlayerInRange>().Range = x.AIRange;
+                        empty.GetComponent<Pathfinding.AIPath>().orientation = Pathfinding.OrientationMode.YAxisForward;
                         break;
                     case "enemyhp":
                         empty.AddComponent<EnemyHP>();

@@ -53,13 +53,13 @@ public class PlayerInRange : MonoBehaviour
         float y = 0;
 
         //Set X
-        if (a.position.x > b.position.x) x = b.position.x + 1.5f;
-        else if (a.position.x < b.position.x) x = b.position.x - 1.5f;
+        if (a.position.x > b.position.x) x = b.position.x + 2f;
+        else if (a.position.x < b.position.x) x = b.position.x - 2f;
         else x = b.position.x;
 
         //Set Y
-        if (a.position.y > b.position.y) y = b.position.y + 1.5f;
-        else if (a.position.y < b.position.y) x = b.position.y - 1.5f;
+        if (a.position.y > b.position.y) y = b.position.y + 2f;
+        else if (a.position.y < b.position.y) x = b.position.y - 2f;
         else x = b.position.y;
 
         return new Vector2(x, y);

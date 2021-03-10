@@ -6,7 +6,7 @@
     "y": 7,
     "z": 0
   },
-  "AIRange": 5,
+  "AIRange": 500,
   "MaxHealth": 3,
   "RegenRate": 0,
   "Components": [
@@ -15,7 +15,7 @@
     "enemyhp",
     "aipath"
   ],
-  "Sprite": "Still.png",
+  "Sprite": "/Resources/Sprites/Enemies/CaveBat/Still.png",
   "Gravity": 0,
   "ColliderRadius": 1
 }
