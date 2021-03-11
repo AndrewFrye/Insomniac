@@ -57,6 +57,8 @@
     "Obj/": true,
     "ProjectSettings/": true,
     "temp/": true,
+    "Assets/_TerrainAutoUpgrade/": true,
+    "Assets/AstarPathfindingProject/": true,
     "Temp/": true
   }
 }

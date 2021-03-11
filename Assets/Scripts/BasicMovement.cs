@@ -18,9 +18,8 @@ public class BasicMovement : MonoBehaviour
     Vector2 move;
     Vector2 m;
     bool jumping = false;
-    public static bool grounded;
-    public static bool groundTest;
-    public static bool levelComplete = false;
+    public bool grounded;
+    public bool groundTest;
     public GameObject bulletPrefab;
     //bool firing = false;
     Vector2 mousePos;
@@ -28,8 +27,8 @@ public class BasicMovement : MonoBehaviour
     //float fireTimer = 0;
     public bool debug;
     public bool ZeroG;
-    static float timer = 0;
-    static string currentTime;
+    float timer = 0;
+    string currentTime;
 
     void Awake()
     {

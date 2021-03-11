@@ -20,6 +20,6 @@ public class EnemyHP : MonoBehaviour
 
     void Update()
     {
-       // if (self.GetComponent<EnemyHP>().HP <= 0) Destroy(self);
+       if (self.GetComponent<EnemyHP>().HP <= 0) Destroy(self);
     }
 }
