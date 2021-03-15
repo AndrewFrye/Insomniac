@@ -57,7 +57,6 @@ public class BasicMovement : MonoBehaviour
         if (SceneManager.GetActiveScene().name.Equals("BossRoom")) ZeroG = true;
 
         else ZeroG = false;
-        levelComplete = false;
         if (ZeroG) rb2d.gravityScale = 0f;
         else rb2d.gravityScale = 1f;
     }

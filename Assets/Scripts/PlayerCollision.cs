@@ -9,6 +9,7 @@ public class PlayerCollision : MonoBehaviour
     public static Transform player;
     public static Collider2D playerCollider;
     public HealthManagement hpsys;
+    public BasicMovement move;
 
     private void Awake()
     {
@@ -41,14 +42,14 @@ public class PlayerCollision : MonoBehaviour
                 hpsys.dead = true;
                 Debug.Log("Dead");
             }
-            if (collision.gameObject.CompareTag("ResetJump")) BasicMovement.groundTest = true;
+            if (collision.gameObject.CompareTag("ResetJump")) move.groundTest = true;
         }
     }
 
     private void OnCollisionExit2D(Collision2D collision)
     {
         currentCollisions.Remove(collision.gameObject);
-        if (collision.gameObject.CompareTag("ResetJump")) BasicMovement.groundTest = false;
+        if (collision.gameObject.CompareTag("ResetJump")) move.groundTest = false;
     }
 
     private void playerEnemyCollide(GameObject e, Transform p)
