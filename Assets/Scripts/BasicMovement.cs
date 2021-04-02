@@ -6,6 +6,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.ParticleSystemJobs;
 using UnityEngine.SceneManagement;
+using Pointer = UnityEngine.InputSystem.Pointer;
 
 public class BasicMovement : MonoBehaviour
 {
@@ -80,9 +81,9 @@ public class BasicMovement : MonoBehaviour
     private void Update()
     {
         //Depracated system to be removed
-        /*Vector3 pos = new Vector3(Pointer.current.position.x.ReadValue(), Pointer.current.position.y.ReadValue(), 0);
+        Vector3 pos = new Vector3(Pointer.current.position.x.ReadValue(), Pointer.current.position.y.ReadValue(), 0);
         mousePos = cam.ScreenToWorldPoint(pos);
-        if (!ZeroG)
+        /*if (!ZeroG)
         {
             m = new Vector2(move.x * speed, 0) * Time.deltaTime;
             if (jumping)
@@ -101,7 +102,7 @@ public class BasicMovement : MonoBehaviour
         }
         transform.Translate(m, Space.World);*/
 
-        rb2d.AddForce(new Vector3(move.x * speed * time.DeltaTime - rb2d.velocity.x, 0, 0));
+        rb2d.AddForce(new Vector3(move.x * speed * Time.deltaTime - rb2d.velocity.x, 0, 0));
 
         if (rb2d.velocity.y > 0) RocketBootsParticles.Play();
         else RocketBootsParticles.Stop();

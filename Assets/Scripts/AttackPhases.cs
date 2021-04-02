@@ -32,7 +32,7 @@ public class Pattern
     private string shape;
     private int projectileCount;
     private float radius;
-    public Vector2[] positions;
+    public List<Vector2> positions;
 
     public Pattern(string Shape, int Count, float Center, float Radius)
     {
@@ -66,32 +66,52 @@ class circle
         count = Count;
     }
 
-    public Vector2[] calcPointPos()
+    public List<Vector2> calcPointPos()
     {
+        List<Vector2> pos = new List<Vector2>();
         float angle = 0;
-        angleDifference = 360 / count;
-        Vector2[] pos = new Vector2[count];
-        float angleX;
-        float sideX;
-        float sideY;
-        //int quadrant;
+        float singleAngle;
+#pragma warning disable CS0219 // Variable is assigned but its value is never used
+        int quadrant = 0;
+#pragma warning restore CS0219 // Variable is assigned but its value is never used
 
-        for(int i = 1; i <= count; i++)
+        singleAngle = 360f / count;
+        
+        for(int i = 0; i < count; i++)
         {
-            if (i == 1) pos[i - 1] = new Vector2(0, radius);
-            else
-            {
-                angle += angleDifference;
-                if (angle > 90) angle -= 90;
-                angleX = 180 - 90 - angle;
-                sideY = angle * (Mathf.Sin((Mathf.PI / 180) * 90));
-                Debug.Log(sideY);
-                sideX = angleX * (Mathf.Sin((Mathf.PI / 180) * 90));
+            while (angle > 90) angle -= 90;
+            if (i == 0) pos.Add(new Vector2(0, radius));
 
-                pos[i - 1] = new Vector2(sideX, sideY);
+            float sinBase = 7f/Mathf.Sin(Mathf.Deg2Rad * 90);
+
+            float y = sinBase * Mathf.Sin(Mathf.Deg2Rad * angle);
+            float x = sinBase * Mathf.Sin(Mathf.Deg2Rad * (90 - angle));
+
+            switch (quadrant)
+            {
+                case 1:
+                    pos.Add(new Vector2(x, y));
+                    break;
+                case 2:
+                    pos.Add(new Vector2(-x, y));
+                    break;
+                case 3:
+                    pos.Add(new Vector2(-x, -y));
+                    break;
+                case 4:
+                    pos.Add(new Vector2(x, -y));
+                    break;
+                default:
+                    break;
             }
-            
+
+            angle += singleAngle;
+            if (angle < 90) quadrant = 1;
+            else if (angle >= 270) quadrant = 4;
+            else if (angle >= 180) quadrant = 3;
+            else if (angle >= 90) quadrant = 2;
         }
+
 
         return pos;
     }
