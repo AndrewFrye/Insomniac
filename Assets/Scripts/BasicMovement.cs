@@ -1,4 +1,6 @@
-﻿using System.Collections;
+﻿using System.Threading;
+using System.Reflection;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -77,7 +79,8 @@ public class BasicMovement : MonoBehaviour
 
     private void Update()
     {
-        Vector3 pos = new Vector3(Pointer.current.position.x.ReadValue(), Pointer.current.position.y.ReadValue(), 0);
+        //Depracated system to be removed
+        /*Vector3 pos = new Vector3(Pointer.current.position.x.ReadValue(), Pointer.current.position.y.ReadValue(), 0);
         mousePos = cam.ScreenToWorldPoint(pos);
         if (!ZeroG)
         {
@@ -96,7 +99,9 @@ public class BasicMovement : MonoBehaviour
         {
             m = new Vector2(move.x * speed, move.y * speed) * Time.deltaTime;
         }
-        transform.Translate(m, Space.World);
+        transform.Translate(m, Space.World);*/
+
+        rb2d.AddForce(new Vector3(move.x * speed * time.DeltaTime - rb2d.velocity.x, 0, 0));
 
         if (rb2d.velocity.y > 0) RocketBootsParticles.Play();
         else RocketBootsParticles.Stop();
