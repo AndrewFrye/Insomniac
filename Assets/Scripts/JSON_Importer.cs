@@ -1,4 +1,6 @@
-﻿using System;
+﻿using System.Numerics;
+using System.Net.Mime;
+using System;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters;
 using System.Collections;
@@ -8,6 +10,8 @@ using UnityEngine;
 using UnityEditor;
 using UnityEngine.Experimental.U2D.Animation;
 using UnityEngine.U2D;
+using Vector3 = UnityEngine.Vector3;
+using Vector2 = UnityEngine.Vector2;
 
 public class JSON_Importer : MonoBehaviour
 {
@@ -15,6 +19,40 @@ public class JSON_Importer : MonoBehaviour
     public GameObject master;
     void Start()
     {
+        //pMaps();
+        Enemies();
+    }
+
+    /*void pMaps(){
+        string path = Application.dataPath + "/JSON/PointMaps";
+        string txt = File.ReadAllText(path+"/Test.map");
+        Map current = JsonUtility.FromJson<Map>(txt);
+
+        List<Vector2> pos = new List<Vector2>();
+
+        float distX = (float)(current.maxX-current.minX) / (float)current.countX;
+        float distY = (float)(current.maxY-current.minY) / (float)current.countY;
+
+        float currentX = current.minX;
+        float currentY = current.minY;
+
+        for(int i = 0; i < current.countY; i++){
+            for(int x = 0; i < current.countX; x++){
+                pos.Add(new Vector2(currentX, currentY));
+                currentX+=distX;
+            }
+            currentY+=distY;
+        }
+
+        foreach(Vector2 x in pos){
+            GameObject empty = new GameObject(x.x + "," + x.y);
+            empty.AddComponent<Transform>();
+            empty.GetComponent<Transform>().position.x = x.x;
+            empty.GetComponent<Transform>().position.y = x.y;
+        }
+    }*/
+
+    void Enemies(){
         string path = Application.dataPath + "/JSON/Enemies";
         List<Enemy> Enemies = new List<Enemy>();
         foreach (string file in System.IO.Directory.GetFiles(path, "*.enemy"))
@@ -80,3 +118,12 @@ class Enemy {
     public float ColliderRadius;
 }
 
+[Serializable]
+class Map {
+    public int countX;
+    public int countY;
+    public int maxX;
+    public int minX;
+    public int maxY;
+    public int minY;
+}
