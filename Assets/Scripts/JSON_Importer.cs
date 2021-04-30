@@ -52,7 +52,7 @@ public class JSON_Importer : MonoBehaviour
         }
     }*/
 
-    void Enemies(){
+    public void Enemies(){
         string path = Application.dataPath + "/JSON/Enemies";
         List<Enemy> Enemies = new List<Enemy>();
         foreach (string file in System.IO.Directory.GetFiles(path, "*.enemy"))
@@ -65,6 +65,7 @@ public class JSON_Importer : MonoBehaviour
         foreach (Enemy x in Enemies)
         {
             GameObject empty = new GameObject(x.Name);
+            empty.tag = "JSONEnemy";
 
             foreach (string y in x.Components)
             {
@@ -82,16 +83,14 @@ public class JSON_Importer : MonoBehaviour
                         break;
                     case "aipath":
                         empty.AddComponent<Pathfinding.AIPath>();
-                        empty.AddComponent<PlayerInRange>();
                         empty.AddComponent<CircleCollider2D>();
                         empty.AddComponent<Rigidbody2D>();
                         empty.GetComponent<Rigidbody2D>().gravityScale = 0;
                         empty.AddComponent<Pathfinding.AIDestinationSetter>();
+                        empty.GetComponent<Pathfinding.AIDestinationSetter>().target = GameObject.FindGameObjectWithTag("Player").transform;
                         empty.GetComponent<CircleCollider2D>().radius = x.ColliderRadius;
-                        empty.GetComponent<PlayerInRange>().targetTag = x.AITarget;
-                        empty.GetComponent<PlayerInRange>().target = empty.GetComponent<Pathfinding.AIDestinationSetter>();
-                        empty.GetComponent<PlayerInRange>().Range = x.AIRange;
                         empty.GetComponent<Pathfinding.AIPath>().orientation = Pathfinding.OrientationMode.YAxisForward;
+                        empty.GetComponent<Pathfinding.AIPath>().constrainInsideGraph = false;
                         break;
                     case "enemyhp":
                         empty.AddComponent<EnemyHP>();

@@ -1,8 +1,8 @@
 {
   "AITarget": "Player",
-  "Name": "JSON Cave Bat",
+  "Name": "JSON Cave Bat 2",
   "Pos": {
-    "x": 0,
+    "x": 5,
     "y": 7,
     "z": 0
   },

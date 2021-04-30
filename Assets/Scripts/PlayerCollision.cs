@@ -33,7 +33,7 @@ public class PlayerCollision : MonoBehaviour
         //Check all current collisions for the player
         foreach (GameObject gObject in currentCollisions)
         {
-            if (gObject.CompareTag("Enemy") && iFrames == 0)
+            if (gObject.CompareTag("Enemy") || gObject.CompareTag("JSONEnemy") && iFrames == 0)
             {
                 playerEnemyCollide(gObject, player);
             }

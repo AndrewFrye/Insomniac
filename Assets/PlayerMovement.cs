@@ -1,4 +1,4 @@
-// GENERATED AUTOMATICALLY FROM 'Assets/Player movement/PlayerMovement.inputactions'
+// GENERATED AUTOMATICALLY FROM 'Assets/PlayerMovement.inputactions'
 
 using System;
 using System.Collections;
@@ -70,6 +70,14 @@ public class @PlayerMovement : IInputActionCollection, IDisposable
                     ""name"": ""Zoom"",
                     ""type"": ""Button"",
                     ""id"": ""c8217e1a-fde6-4238-9dca-59c39f242b5b"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""ReloadJson"",
+                    ""type"": ""Button"",
+                    ""id"": ""650b1321-00f5-45a9-9755-f6631ef0c500"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
@@ -251,6 +259,17 @@ public class @PlayerMovement : IInputActionCollection, IDisposable
                     ""action"": ""Zoom"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""868cab4f-ff9b-47c3-b955-030cb2e03aec"",
+                    ""path"": ""<Keyboard>/rightShift"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ReloadJson"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -294,6 +313,7 @@ public class @PlayerMovement : IInputActionCollection, IDisposable
         m_Player_DebugTeleport = m_Player.FindAction("Debug Teleport", throwIfNotFound: true);
         m_Player_OpenMenuExitUI = m_Player.FindAction("OpenMenu/ExitUI", throwIfNotFound: true);
         m_Player_Zoom = m_Player.FindAction("Zoom", throwIfNotFound: true);
+        m_Player_ReloadJson = m_Player.FindAction("ReloadJson", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -350,6 +370,7 @@ public class @PlayerMovement : IInputActionCollection, IDisposable
     private readonly InputAction m_Player_DebugTeleport;
     private readonly InputAction m_Player_OpenMenuExitUI;
     private readonly InputAction m_Player_Zoom;
+    private readonly InputAction m_Player_ReloadJson;
     public struct PlayerActions
     {
         private @PlayerMovement m_Wrapper;
@@ -361,6 +382,7 @@ public class @PlayerMovement : IInputActionCollection, IDisposable
         public InputAction @DebugTeleport => m_Wrapper.m_Player_DebugTeleport;
         public InputAction @OpenMenuExitUI => m_Wrapper.m_Player_OpenMenuExitUI;
         public InputAction @Zoom => m_Wrapper.m_Player_Zoom;
+        public InputAction @ReloadJson => m_Wrapper.m_Player_ReloadJson;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -391,6 +413,9 @@ public class @PlayerMovement : IInputActionCollection, IDisposable
                 @Zoom.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnZoom;
                 @Zoom.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnZoom;
                 @Zoom.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnZoom;
+                @ReloadJson.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnReloadJson;
+                @ReloadJson.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnReloadJson;
+                @ReloadJson.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnReloadJson;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -416,6 +441,9 @@ public class @PlayerMovement : IInputActionCollection, IDisposable
                 @Zoom.started += instance.OnZoom;
                 @Zoom.performed += instance.OnZoom;
                 @Zoom.canceled += instance.OnZoom;
+                @ReloadJson.started += instance.OnReloadJson;
+                @ReloadJson.performed += instance.OnReloadJson;
+                @ReloadJson.canceled += instance.OnReloadJson;
             }
         }
     }
@@ -447,5 +475,6 @@ public class @PlayerMovement : IInputActionCollection, IDisposable
         void OnDebugTeleport(InputAction.CallbackContext context);
         void OnOpenMenuExitUI(InputAction.CallbackContext context);
         void OnZoom(InputAction.CallbackContext context);
+        void OnReloadJson(InputAction.CallbackContext context);
     }
 }

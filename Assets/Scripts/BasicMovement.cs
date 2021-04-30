@@ -32,6 +32,7 @@ public class BasicMovement : MonoBehaviour
     public bool ZeroG;
     float timer = 0;
     string currentTime;
+    public float fireTimer;
 
     void Awake()
     {
@@ -52,6 +53,7 @@ public class BasicMovement : MonoBehaviour
             controls.Player.DebugTeleport.performed += ctx => teleport();
             controls.Player.OpenMenuExitUI.performed += ctx => escapePressed();
             controls.Player.Zoom.performed += ctx => zoom(); 
+            controls.Player.ReloadJson.performed += ctx => resetJson();
         }
     }
 
@@ -68,7 +70,7 @@ public class BasicMovement : MonoBehaviour
     {
         if (!ZeroG)
         {
-            RaycastHit2D hit = Physics2D.Raycast(new Vector2(player.position.x, player.position.y - 1.6f), -Vector2.up);
+            RaycastHit2D hit = Physics2D.Raycast(new Vector2(player.position.x, player.position.y - 1f), -Vector2.up);
             if (hit.collider != null)
             {
                 float distance = transform.position.y - hit.point.y;
@@ -111,6 +113,17 @@ public class BasicMovement : MonoBehaviour
         timer += Time.deltaTime;
         currentTime = (int)timer / 60 + ":" + (int)timer % 60;
         Debug.Log(currentTime);
+
+        RaycastHit2D hit = Physics2D.Raycast(new Vector2(player.position.x, player.position.y - 1f), -Vector2.up);
+            if (hit.collider != null)
+            {
+                float distance = transform.position.y - hit.point.y;
+                Debug.Log(distance);
+                if (distance < 1.7f) speed = 2000;
+                else speed = 20;
+            }
+
+        if(fireTimer>0)fireTimer-=Time.deltaTime;
     }
 
     public static GameObject currentInteractable;
@@ -135,7 +148,8 @@ public class BasicMovement : MonoBehaviour
 
     public void shoot()
     {
-        Vector2 playerPos = new Vector2(player.position.x, player.position.y);
+       if(fireTimer<=0){
+            Vector2 playerPos = new Vector2(player.position.x, player.position.y);
         Vector2 dir = mousePos - playerPos;
         float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
         Quaternion rotation = Quaternion.Euler(0, 0, angle);
@@ -143,6 +157,8 @@ public class BasicMovement : MonoBehaviour
         if(mousePos.x > playerPos.x) Instantiate(bulletPrefab, new Vector3(player.position.x+0.7f, player.position.y), rotation);
         else if (mousePos.x < playerPos.x) Instantiate(bulletPrefab, new Vector3(player.position.x - 0.7f, player.position.y), rotation);
         else if (mousePos.x == playerPos.x) Instantiate(bulletPrefab, new Vector3(player.position.x, player.position.y + 1f), rotation);
+        fireTimer = 1;
+        }
     }
 
     public void teleport()
@@ -168,5 +184,14 @@ public class BasicMovement : MonoBehaviour
         {
             rb2d.gameObject.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeRotation;
         }
+    }
+
+    private void resetJson(){
+        GameObject[] tmp = GameObject.FindGameObjectsWithTag("JSONEnemy");
+        foreach(GameObject x in tmp){
+            GameObject.Destroy(x);
+        }
+        JSON_Importer importer = GameObject.FindGameObjectWithTag("JSONManager").GetComponent<JSON_Importer>();
+        importer.Enemies();
     }
 }
