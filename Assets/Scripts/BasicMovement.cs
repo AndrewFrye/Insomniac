@@ -75,7 +75,7 @@ public class BasicMovement : MonoBehaviour
             {
                 float distance = transform.position.y - hit.point.y;
                 Debug.Log(distance);
-                if (distance < 1.7f) rb2d.AddForce(new Vector2(move.x * speed, jumpSpeed)); ;
+                if (distance < 1.7f) rb2d.AddForce(new Vector2(0, jumpSpeed)); ;
             }
         }
     }
@@ -104,7 +104,7 @@ public class BasicMovement : MonoBehaviour
         }
         transform.Translate(m, Space.World);*/
 
-        rb2d.AddForce(new Vector3(move.x * speed * Time.deltaTime - rb2d.velocity.x, 0, 0));
+        rb2d.AddForce(new Vector2(move.x * speed * Time.deltaTime - rb2d.velocity.x, 0));
 
         if (rb2d.velocity.y > 0) RocketBootsParticles.Play();
         else RocketBootsParticles.Stop();

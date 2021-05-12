@@ -167,6 +167,37 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   guid: 589ab5a63eadce38-9ac1ee9f67541af8
+--- !u!1 &835031472 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5387933860098672431, guid: 2da5eb9d7b845a847bc57133f9319403,
+    type: 3}
+  m_PrefabInstance: {fileID: 1108723908}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &835031473
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 835031472}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 703216748e2544842afea5c9da315ecd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Camera: {fileID: 835031475}
+  Player: {fileID: 1497072361}
+  minX: -100
+  maxX: 100
+  minY: -100
+  maxY: 100
+  prePos: {x: 0, y: 0, z: 0}
+--- !u!4 &835031475 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5387933860098672595, guid: 2da5eb9d7b845a847bc57133f9319403,
+    type: 3}
+  m_PrefabInstance: {fileID: 1108723908}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1108723908
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -234,7 +265,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 5387933860098672429, guid: 2da5eb9d7b845a847bc57133f9319403, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 2da5eb9d7b845a847bc57133f9319403, type: 3}
 --- !u!1001 &1250187776
 PrefabInstance:
@@ -266,13 +298,13 @@ PrefabInstance:
     - target: {fileID: 9148001972647809193, guid: b6bbebb2c83aaf34488c3c2cc8dca258,
         type: 3}
       propertyPath: jumpSpeed
-      value: 200
+      value: 250
       objectReference: {fileID: 0}
     - target: {fileID: 9148001972647809193, guid: b6bbebb2c83aaf34488c3c2cc8dca258,
         type: 3}
       propertyPath: bulletPrefab
       value: 
-      objectReference: {fileID: 5507644658874234587, guid: 3cf2e618d9b56ad42a7493b4d7edd505,
+      objectReference: {fileID: 5548142877047894444, guid: 46c62a2baa7903c4fb1918e88ffd4c1f,
         type: 3}
     - target: {fileID: 9148001972647809195, guid: b6bbebb2c83aaf34488c3c2cc8dca258,
         type: 3}
@@ -846,6 +878,12 @@ TilemapCollider2D:
   m_Offset: {x: 0, y: 0}
   m_MaximumTileChangeCount: 1000
   m_ExtrusionFactor: 0.00001
+--- !u!4 &1497072361 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 9148001972647809195, guid: b6bbebb2c83aaf34488c3c2cc8dca258,
+    type: 3}
+  m_PrefabInstance: {fileID: 1250187776}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1622265796
 PrefabInstance:
   m_ObjectHideFlags: 0
