@@ -9,6 +9,9 @@ TagManager:
   - ResetJump
   - Projectile
   - HealthManager
+  - Pebble
+  - JSONEnemy
+  - JSONManager
   layers:
   - Default
   - TransparentFX

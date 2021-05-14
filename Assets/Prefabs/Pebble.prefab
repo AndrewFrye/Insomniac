@@ -116,6 +116,7 @@ MonoBehaviour:
   bounces: 0
   speed: 20
   rb: {fileID: 4760677296671743261}
+  lifeSpan: 5
 --- !u!50 &4760677296671743261
 Rigidbody2D:
   serializedVersion: 4

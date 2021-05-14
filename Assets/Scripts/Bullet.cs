@@ -1,12 +1,16 @@
-﻿using System.Collections;
+﻿using System;
+using System.Threading;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Object = UnityEngine.Object;
 
 public class Bullet : MonoBehaviour
 {
     public int bounces = 2;
     public float speed = 5f;
     public Rigidbody2D rb;
+    public float lifeSpan;
 
 
     void Start()
@@ -30,5 +34,11 @@ public class Bullet : MonoBehaviour
             }
         }
         Object.Destroy(rb.gameObject);
+    }
+
+    void Update()
+    {
+        lifeSpan-=Time.deltaTime;
+        if(lifeSpan<=0f) Object.Destroy(rb.gameObject);
     }
 }

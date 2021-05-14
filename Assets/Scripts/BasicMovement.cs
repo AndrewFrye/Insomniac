@@ -1,4 +1,5 @@
-﻿using System.Threading;
+﻿using System.Numerics;
+using System.Threading;
 using System.Reflection;
 using System.Collections;
 using System.Collections.Generic;
@@ -7,6 +8,9 @@ using UnityEngine.InputSystem;
 using UnityEngine.ParticleSystemJobs;
 using UnityEngine.SceneManagement;
 using Pointer = UnityEngine.InputSystem.Pointer;
+using Vector2 = UnityEngine.Vector2;
+using Vector3 = UnityEngine.Vector3;
+using Quaternion = UnityEngine.Quaternion;
 
 public class BasicMovement : MonoBehaviour
 {
@@ -33,6 +37,7 @@ public class BasicMovement : MonoBehaviour
     float timer = 0;
     string currentTime;
     public float fireTimer;
+    Vector2 frameForce;
 
     void Awake()
     {
@@ -75,36 +80,24 @@ public class BasicMovement : MonoBehaviour
             {
                 float distance = transform.position.y - hit.point.y;
                 Debug.Log(distance);
-                if (distance < 1.7f) rb2d.AddForce(new Vector2(0, jumpSpeed)); ;
+                if (distance < 1.7f) jumping=true;
             }
         }
     }
 
     private void Update()
     {
+        frameForce.x = move.x;
+        if(jumping) {
+            frameForce.y = jumpSpeed;
+            jumping=false;
+        }
+        else frameForce.y = 0;
         //Depracated system to be removed
         Vector3 pos = new Vector3(Pointer.current.position.x.ReadValue(), Pointer.current.position.y.ReadValue(), 0);
         mousePos = cam.ScreenToWorldPoint(pos);
-        /*if (!ZeroG)
-        {
-            m = new Vector2(move.x * speed, 0) * Time.deltaTime;
-            if (jumping)
-            {
-                if (grounded)
-                {
-
-                    grounded = false;
-                }
-                power--;
-            }
-        }
-        else if(ZeroG)
-        {
-            m = new Vector2(move.x * speed, move.y * speed) * Time.deltaTime;
-        }
-        transform.Translate(m, Space.World);*/
-
-        rb2d.AddForce(new Vector2(move.x * speed * Time.deltaTime - rb2d.velocity.x, 0));
+        
+        rb2d.AddForce(new Vector2(frameForce.x * speed * Time.deltaTime - rb2d.velocity.x, frameForce.y));
 
         if (rb2d.velocity.y > 0) RocketBootsParticles.Play();
         else RocketBootsParticles.Stop();
@@ -113,15 +106,6 @@ public class BasicMovement : MonoBehaviour
         timer += Time.deltaTime;
         currentTime = (int)timer / 60 + ":" + (int)timer % 60;
         Debug.Log(currentTime);
-
-        RaycastHit2D hit = Physics2D.Raycast(new Vector2(player.position.x, player.position.y - 1f), -Vector2.up);
-            if (hit.collider != null)
-            {
-                float distance = transform.position.y - hit.point.y;
-                Debug.Log(distance);
-                if (distance < 1.7f) speed = 2000;
-                else speed = 20;
-            }
 
         if(fireTimer>0)fireTimer-=Time.deltaTime;
     }
@@ -154,9 +138,9 @@ public class BasicMovement : MonoBehaviour
         float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
         Quaternion rotation = Quaternion.Euler(0, 0, angle);
 
-        if(mousePos.x > playerPos.x) Instantiate(bulletPrefab, new Vector3(player.position.x+0.7f, player.position.y), rotation);
-        else if (mousePos.x < playerPos.x) Instantiate(bulletPrefab, new Vector3(player.position.x - 0.7f, player.position.y), rotation);
-        else if (mousePos.x == playerPos.x) Instantiate(bulletPrefab, new Vector3(player.position.x, player.position.y + 1f), rotation);
+        if(mousePos.x > playerPos.x) Instantiate(bulletPrefab, new Vector3(player.position.x+1, player.position.y), rotation);
+        else if (mousePos.x < playerPos.x) Instantiate(bulletPrefab, new Vector3(player.position.x - 1f, player.position.y), rotation);
+        else if (mousePos.x == playerPos.x) Instantiate(bulletPrefab, new Vector3(player.position.x, player.position.y + 2f), rotation);
         fireTimer = 1;
         }
     }
