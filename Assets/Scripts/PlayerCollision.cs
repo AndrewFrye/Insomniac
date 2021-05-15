@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerCollision : MonoBehaviour
 {
@@ -43,6 +44,7 @@ public class PlayerCollision : MonoBehaviour
                 Debug.Log("Dead");
             }
             if (collision.gameObject.CompareTag("ResetJump")) move.groundTest = true;
+            if (collision.gameObject.CompareTag("Exit")) SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         }
     }
 

@@ -1,0 +1,39 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Default Local Group
+  m_EditorClassIdentifier: 
+  m_GroupName: Default Local Group
+  m_Data:
+    m_SerializedData: []
+  m_GUID: 77a46a66a0d968144a66c3b2ac3b4754
+  m_SerializeEntries:
+  - m_GUID: 8202f9b29309986438382e9bdae20859
+    m_Address: Assets/JSON/Enemies/Test.enemy
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - JSON
+    m_MainAsset: {fileID: 102900000, guid: 8202f9b29309986438382e9bdae20859, type: 3}
+    m_TargetAsset: {fileID: 102900000, guid: 8202f9b29309986438382e9bdae20859, type: 3}
+  - m_GUID: 6c6ad7593e5998942be922b40c3fc68a
+    m_Address: Assets/JSON/Enemies/Test2.enemy
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - JSON
+    m_MainAsset: {fileID: 102900000, guid: 6c6ad7593e5998942be922b40c3fc68a, type: 3}
+    m_TargetAsset: {fileID: 102900000, guid: 6c6ad7593e5998942be922b40c3fc68a, type: 3}
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 84c8cd1ebefcdaa44936407bbc0a9142, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: d5ea9382aeda0274d8ed1bf64e66d178, type: 2}
+    - {fileID: 11400000, guid: 7b4faf3f81efaf7408eaa76a8b87aefb, type: 2}

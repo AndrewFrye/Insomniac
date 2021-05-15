@@ -41,6 +41,14 @@ public class CameraMovement : MonoBehaviour
             else if (Player.position.y < Camera.position.y - 1 && Camera.position.y > minY) Camera.Translate(new Vector3(0, Player.position.y - (Camera.position.y - 1), 0));
 
             prePos = Camera.position;
+
+
+            //Set camera position if out of bounds
+            if(Camera.position.y < minY) Camera.position = new Vector3(Camera.position.x, minY, Camera.position.z);
+            if(Camera.position.y > maxY) Camera.position = new Vector3(Camera.position.x, maxY, Camera.position.z);
+            if(Camera.position.x < minX) Camera.position = new Vector3(maxY, Camera.position.y, Camera.position.z);
+            if(Camera.position.x > maxX) Camera.position = new Vector3(maxX, Camera.position.y, Camera.position.z);
+
         }
         else if(zoom)
         {

@@ -1,4 +1,8 @@
-﻿using System.Numerics;
+﻿using System.Net.Sockets;
+using System.Diagnostics;
+using System.Transactions;
+using System.Runtime;
+using System.Numerics;
 using System.Net.Mime;
 using System;
 using System.Runtime.Serialization;
@@ -12,6 +16,9 @@ using UnityEngine.Experimental.U2D.Animation;
 using UnityEngine.U2D;
 using Vector3 = UnityEngine.Vector3;
 using Vector2 = UnityEngine.Vector2;
+using Debug = UnityEngine.Debug;
+using UnityEngine.AddressableAssets;
+using UnityEngine.ResourceManagement.AsyncOperations;
 
 public class JSON_Importer : MonoBehaviour
 {
@@ -19,38 +26,9 @@ public class JSON_Importer : MonoBehaviour
     public GameObject master;
     void Start()
     {
-        //pMaps();
+        LoadAssets();
         Enemies();
     }
-
-    /*void pMaps(){
-        string path = Application.dataPath + "/JSON/PointMaps";
-        string txt = File.ReadAllText(path+"/Test.map");
-        Map current = JsonUtility.FromJson<Map>(txt);
-
-        List<Vector2> pos = new List<Vector2>();
-
-        float distX = (float)(current.maxX-current.minX) / (float)current.countX;
-        float distY = (float)(current.maxY-current.minY) / (float)current.countY;
-
-        float currentX = current.minX;
-        float currentY = current.minY;
-
-        for(int i = 0; i < current.countY; i++){
-            for(int x = 0; i < current.countX; x++){
-                pos.Add(new Vector2(currentX, currentY));
-                currentX+=distX;
-            }
-            currentY+=distY;
-        }
-
-        foreach(Vector2 x in pos){
-            GameObject empty = new GameObject(x.x + "," + x.y);
-            empty.AddComponent<Transform>();
-            empty.GetComponent<Transform>().position.x = x.x;
-            empty.GetComponent<Transform>().position.y = x.y;
-        }
-    }*/
 
     public void Enemies(){
         string path = Application.dataPath + "/JSON/Enemies";
@@ -100,7 +78,13 @@ public class JSON_Importer : MonoBehaviour
             }
         }
     }
+
+    void LoadAssets(){
+        
+    }
 }
+
+
 
 [Serializable]
 class Enemy {

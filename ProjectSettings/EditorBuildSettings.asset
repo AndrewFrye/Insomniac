@@ -20,4 +20,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Testing/Test.unity
     guid: e4279de8ed094504f88f6cd395d0f80a
-  m_configObjects: {}
+  - enabled: 1
+    path: Assets/Scenes/Testing/Finish.unity
+    guid: 244f1ead2c64d8141a67e0c3ec25a871
+  m_configObjects:
+    com.unity.addressableassets: {fileID: 11400000, guid: 009374a6ca38d8f4bb8d7130fd7f73a3,
+      type: 2}

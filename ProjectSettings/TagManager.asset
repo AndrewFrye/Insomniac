@@ -12,6 +12,7 @@ TagManager:
   - Pebble
   - JSONEnemy
   - JSONManager
+  - Exit
   layers:
   - Default
   - TransparentFX
