@@ -1,0 +1,22 @@
+{
+  "AITarget": "Player",
+  "Name": "JSON Cave Bat 2",
+  "Pos": {
+    "x": 5,
+    "y": 7,
+    "z": 0
+  },
+  "AIRange": 500,
+  "MaxHealth": 1,
+  "RegenRate": 0,
+  "Components": [
+    "transform",
+    "spriterenderer",
+    "enemyhp",
+    "aipath"
+  ],
+  "SpriteLabel": "CaveBatStill",
+  "SpriteCategory": "Enemies",
+  "Gravity": 0,
+  "ColliderRadius": 0.5
+}

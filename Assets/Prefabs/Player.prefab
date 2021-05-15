@@ -26,7 +26,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9148001971424450350}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.12, y: -0.32, z: 0}
+  m_LocalPosition: {x: -0.21, y: -0.16, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 9148001972317546067}
@@ -9585,12 +9585,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: e001471ea46e5984f8dae0948d70a9a7, type: 3}
+  m_Sprite: {fileID: 21300000, guid: ea23b7b82e4041547b96a8c9167c102a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 3.2, y: 3.2}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -9630,18 +9630,18 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.009598911, y: -0.14878345}
+  m_Offset: {x: -0.2111772, y: -0.01698327}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 2.24, y: 2.24}
-    newSize: {x: 1, y: 1}
+    oldSize: {x: 3.2, y: 3.2}
+    newSize: {x: 3.2, y: 3.2}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.884385, y: 1.88869}
+  m_Size: {x: 0.76033694, y: 1.3769913}
   m_EdgeRadius: 0
 --- !u!114 &9148001972647809238
 MonoBehaviour:
@@ -9655,7 +9655,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Actions: {fileID: -944628639613478452, guid: 4597a69e9ddbfee4684407876b006568,
+  m_Actions: {fileID: -944628639613478452, guid: f69a4298c6e99474f975747349d5b366,
     type: 3}
   m_NotificationBehavior: 2
   m_UIInputModule: {fileID: 0}
@@ -9693,6 +9693,10 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: c28d759d-2277-4dc0-b8b5-120aa29e0e41
     m_ActionName: Player/OpenMenu/ExitUI[/Keyboard/escape]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: c8217e1a-fde6-4238-9dca-59c39f242b5b
+    m_ActionName: Player/Zoom[/Keyboard/z]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -9707,18 +9711,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 9148001972647809196}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 90dd1dd3f21750540b2c64c7b518cf33, type: 3}
+  m_Script: {fileID: 11500000, guid: d3948d5dfb0a2434497c1b627b6f2c32, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   RocketBootsParticles: {fileID: 9148001971424450349}
   floatHeight: 0
-  speed: 10
-  jumpSpeed: 300
+  speed: 0
+  jumpSpeed: 0
   power: 0
-  bulletPrefab: {fileID: 4865707611579885298, guid: 6976bb1a43f1af041bd60d2cc81e7c0b,
-    type: 3}
+  bulletPrefab: {fileID: 0}
   cam: {fileID: 0}
   debug: 0
+  ZeroG: 0
 --- !u!114 &9148001972647809239
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9728,6 +9732,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 9148001972647809196}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2d7f67003b5b7524fa4f502e4b48bd4e, type: 3}
+  m_Script: {fileID: 11500000, guid: 5e86a304ed843a2419f9e4146ef20186, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hpsys: {fileID: 0}
